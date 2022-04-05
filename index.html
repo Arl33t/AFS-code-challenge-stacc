@@ -51,12 +51,13 @@
           <input type="search"
                 class="form-control" 
                 name="" 
-                id="" 
+                id="searchInput" 
                 aria-describedby="helpId" 
-                placeholder="Ola Nordmann">
+                placeholder="Ola Nordmann"
+                onkeyup="search(event)">
         </div>
         <div class="col-sm-1 pt-2">
-          <a name="" id="" class="btn btn-primary px-4" href="#" role="button">Søk</a>
+          <button id="searchBtn" class="btn btn-primary px-4" role="button" onclick="search('btn');">Søk</button>
         </div>
       </div>
     </div>
