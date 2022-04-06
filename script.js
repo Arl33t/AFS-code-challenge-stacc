@@ -1,13 +1,10 @@
 // Variable declaration. Some on window load to catch DOM Elements
 window.onload = function() {
-    const tableCont = document.getElementById("main-table-cont");
-    const table = document.getElementById("main-table");
-    const tableBody = document.getElementById("tablebody");
-    const tableMeta = document.getElementById("tableMeta");
     const loading = document.getElementById("loading");
+    const hitsAmount = document.getElementById("hitsAmount");
 }
 
-// Loading animation functions
+// Loading-animation functions
 function showLoading() {
     loading.style.display = "flex";
 }
@@ -29,13 +26,6 @@ async function fetchInfo(name) {
     info = data;
     console.log(data);
 
-    // fetch(url)
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         hideLoading()
-    //         console.log("Data received")
-    //         info = data
-    //     });
     return data;
 }
 
@@ -46,6 +36,27 @@ async function search(event) {
 
     if (event.key == "Enter" || event == "btn") {
         const response = await fetchInfo(input);
-        //console.log(response);
+        const hitsNum = response.numberOfHits;
+        if (hitsNum === 0) {
+            console.log("No name found");
+        }
+        else {
+            hitsAmount.innerText = "Number of hits: " + hitsNum;
+            createTable(response.hits[0], "#table")
+        }
+    }
+}
+
+
+// Function for constructing table from JSON
+function createTable(data, selector) {
+
+    for (const key in data) {
+        let header = key;
+        let value = data[key]
+        var row = $('<tr/>');
+        row.append($('<th/>').html(header));
+        row.append($('<td/>').html(value));
+        $(selector).append(row);
     }
 }
