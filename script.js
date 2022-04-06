@@ -2,6 +2,7 @@
 window.onload = function() {
     const loading = document.getElementById("loading");
     const hitsAmount = document.getElementById("hitsAmount");
+    const tables = document.getElementById("tables");
 }
 
 // Loading-animation functions
@@ -14,7 +15,7 @@ function hideLoading() {
 
 
 // API call. Returns data from API.
-let info; // Variable for fetched data
+let info; // Variable for fetched data (not used, consider deleting)
 async function fetchInfo(name) {
     showLoading();
     let url = "https://code-challenge.stacc.dev/api/pep?name=" + name;
@@ -37,12 +38,18 @@ async function search(event) {
     if (event.key == "Enter" || event == "btn") {
         const response = await fetchInfo(input);
         const hitsNum = response.numberOfHits;
+        tables.innerHTML = "";
+        $('#tablesCont').addClass("border");
+
         if (hitsNum === 0) {
-            console.log("No name found");
+            hitsAmount.innerText = "Ingen treff";
         }
         else {
-            hitsAmount.innerText = "Number of hits: " + hitsNum;
-            createTable(response.hits[0], "#table")
+            hitsAmount.innerText = "Antall treff: " + hitsNum;
+            
+            for (let hits = 0; hits < hitsNum; hits++) {
+                createTable(response.hits[hits], "#tables");
+            }
         }
     }
 }
@@ -50,13 +57,25 @@ async function search(event) {
 
 // Function for constructing table from JSON
 function createTable(data, selector) {
+    let table = $('<table/>');
+    table.append($('<tbody/>'));
+
+    // adding Bootstrap classes
+    table.addClass("table");
+    //table.addClass("table-striped");
+    table.addClass("table-hover");
+    table.addClass("table-bordered");
+    table.addClass("table-dark")
 
     for (const key in data) {
         let header = key;
         let value = data[key]
-        var row = $('<tr/>');
+        
+        let row = $('<tr/>');
         row.append($('<th/>').html(header));
         row.append($('<td/>').html(value));
-        $(selector).append(row);
+        table.append(row);
     }
+
+    $(selector).append(table);
 }
