@@ -62,7 +62,6 @@ function createTable(data, selector) {
 
     // adding Bootstrap classes
     table.addClass("table");
-    //table.addClass("table-striped");
     table.addClass("table-hover");
     table.addClass("table-bordered");
     table.addClass("table-dark")

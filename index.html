@@ -9,12 +9,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>KYC</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- Header and navbar -->
     <div class="container-fluid" style="padding: 0;">
       <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-          <span class="fs-4" style="padding-left: 1em;">Bank AS</span>
+          <span class="fs-4" style="padding-left: 1em;">
+              <button type="button" class="btn btn-primary" disabled><b>B</b></button>
+            Bank AS
+          </span>
         </a>
   
         <ul class="nav nav-tabs">
@@ -33,10 +36,8 @@
         </div>
         <div class="row">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-            Laudantium assumenda neque molestiae quidem voluptatum, 
-            odio saepe ea atque minima accusantium earum vero iusto quis dolorum ratione. 
-            Illo accusantium perspiciatis libero!
+            Her kan du utføre ein såkalla "PEP-sjekk", 
+            ein sjekk om nokon er ein <b>p</b>olitisk <b>e</b>ksponert <b>p</b>erson.
           </p>
         </div>
     </div>
@@ -77,5 +78,10 @@
       <div class="row table-responsive" id="tables">
       </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto">
+      <p class="text-center text-muted">@Arle F. Solheim</p>
+    </footer>
 </body>
 </html>
